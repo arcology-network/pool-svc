@@ -1,15 +1,15 @@
 package workers
 
 import (
-	ethCommon "github.com/arcology/3rd-party/eth/common"
-	"github.com/arcology/common-lib/types"
-	"github.com/arcology/component-lib/actor"
+	ethCommon "github.com/arcology-network/3rd-party/eth/common"
+	"github.com/arcology-network/common-lib/types"
+	"github.com/arcology-network/component-lib/actor"
 	"go.uber.org/zap"
 
-	"github.com/arcology/component-lib/aggregator/aggregator"
+	"github.com/arcology-network/component-lib/aggregator/aggregator"
 
-	"github.com/arcology/component-lib/log"
-	poolTypes "github.com/arcology/pool-svc/service/types"
+	"github.com/arcology-network/component-lib/log"
+	poolTypes "github.com/arcology-network/pool-svc/service/types"
 )
 
 type AggreSelector struct {

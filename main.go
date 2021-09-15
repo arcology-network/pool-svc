@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/arcology/3rd-party/tm/cli"
-	"github.com/arcology/pool-svc/service"
+	"github.com/arcology-network/3rd-party/tm/cli"
+	"github.com/arcology-network/pool-svc/service"
 )
 
 func main() {

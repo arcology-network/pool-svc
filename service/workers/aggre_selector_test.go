@@ -3,7 +3,7 @@ package workers
 import (
 	"testing"
 
-	ethCommon "github.com/arcology/3rd-party/eth/common"
+	ethCommon "github.com/arcology-network/3rd-party/eth/common"
 )
 
 func BenchmarkAggreSelector(b *testing.B) {

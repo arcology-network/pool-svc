@@ -3,11 +3,11 @@ package service
 import (
 	"net/http"
 
-	"github.com/arcology/component-lib/actor"
-	"github.com/arcology/component-lib/kafka"
-	"github.com/arcology/component-lib/storage"
-	"github.com/arcology/component-lib/streamer"
-	"github.com/arcology/pool-svc/service/workers"
+	"github.com/arcology-network/component-lib/actor"
+	"github.com/arcology-network/component-lib/kafka"
+	"github.com/arcology-network/component-lib/storage"
+	"github.com/arcology-network/component-lib/streamer"
+	"github.com/arcology-network/pool-svc/service/workers"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/spf13/viper"
 )
