@@ -5,7 +5,6 @@ import (
 
 	"github.com/arcology-network/component-lib/actor"
 	"github.com/arcology-network/component-lib/kafka"
-	"github.com/arcology-network/component-lib/storage"
 	"github.com/arcology-network/component-lib/streamer"
 	"github.com/arcology-network/pool-svc/service/workers"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -76,22 +75,7 @@ func (cfg *Config) Start() {
 	)
 	kafkaDownloaderMsg.Connect(streamer.NewDisjunctions(kafkaDownloaderMsg, 10000))
 
-	//02-00 Combiner
-	combiner := actor.NewActor(
-		"combiner",
-		broker,
-		[]string{
-			actor.MsgReapCommand,
-			actor.MsgClearCompleted,
-		},
-		[]string{
-			actor.MsgStartReapCommand,
-		},
-		[]int{1},
-		storage.NewCombiner(cfg.concurrency, cfg.groupid, actor.MsgStartReapCommand),
-	)
-	combiner.Connect(streamer.NewConjunctions(combiner))
-
+	actor.Combine(actor.MsgReapCommand, actor.MsgClearCompleted).On(broker)
 	//02 aggreSelector
 	aggreSelector := actor.NewActor(
 		"aggreSelector",
@@ -101,7 +85,7 @@ func (cfg *Config) Start() {
 			actor.MsgClearCommand,
 			actor.MsgReapinglist,
 			actor.MsgInitReapCommand,
-			actor.MsgStartReapCommand,
+			actor.CombinedName(actor.MsgReapCommand, actor.MsgClearCompleted),
 		},
 		[]string{
 			actor.MsgMessagersReaped,
